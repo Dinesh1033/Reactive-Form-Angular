@@ -1,0 +1,114 @@
+<div class="container">
+  <div class="card bg-dark text-white m-3 mt-5">
+    <h5 class="card-header text-center">
+      <img src="../assets/lco.png" alt="" width="30" height="30" class="mr-2" />
+      LCO Signup Form
+    </h5>
+    <div class="card-body">
+      <form [formGroup]="Register" (ngSubmit)="OnSubmit()" >
+        <div class="form-row">
+          <div class="form-group col-6">
+            <label>First Name</label>
+            <input 
+            formControlName="firstName"
+            [ngClass]="{ 'is-invalid':submit && a.firstName.errors }"
+            type="text" class="form-control" />
+            <div *ngIf="submit && a.firstName.errors" class="text-warning">
+              <div *ngIf="a.firstName.errors.required">
+                First Name is required
+              </div>
+            </div>
+          </div>
+          <div class="form-group col-6">
+            <label>Last Name</label>
+            <input 
+            formControlName="lastname"
+            [ngClass]="{ 'is-invalid':submit && a.lastname.errors }"
+
+            type="text" class="form-control" />
+            <div *ngIf="submit && a.lastname.errors" class="text-warning">
+              <div *ngIf="a.lastname.errors.required">
+                Last Name is required
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="form-group">
+          <label>Email</label>
+          <input 
+          formControlName="email"
+          [ngClass]="{ 'is-invalid':submit && a.email.errors }"
+
+          type="text" class="form-control" />
+          <div *ngIf="a.email.touched&& a.email.errors" class="text-warning">
+            <div *ngIf="a.email.errors.required" >Email is required</div>
+            <div *ngIf="a.email.errors.email">
+              Email must be a valid email address
+            </div>
+          </div>
+        </div>
+
+        <ng-container *ngIf="a.email.touched&&a.email.errors">
+          <div *ngIf="a.email.errors.required" class="text-danger">
+            Value is required.
+          </div>
+        </ng-container>
+        <div class="form-row">
+          <div class="form-group col">
+            <label>Password</label>
+            <input 
+            formControlName="password"
+            [ngClass]="{ 'is-invalid':submit && a.password.errors }"
+
+            type="password" class="form-control" />
+            <div *ngIf="a.password.touched&&a.password.errors" class="text-warning">
+              <div *ngIf="a.password.errors.required" >Password is required</div>
+              <div *ngIf="a.password.errors.minlength">
+                Password must be at least 6 characters
+              </div>
+            </div>
+          </div>
+          <div class="form-group col">
+            <label>Confirm Password</label>
+            <input 
+            
+
+            formControlName='confirmPassword'
+            [ngClass]="{ 'is-invalid':submit && a.confirmPassword.errors }"
+
+            type="password" class="form-control" />
+            <div *ngIf="a.confirmPassword.touched&&a.confirmPassword.errors" class="text-warning">
+              <div *ngIf="a.confirmPassword.errors.required">
+                Confirm Password is required
+              </div>
+              <div *ngIf="a.confirmPassword.errors.mustMatch">
+                Passwords must match
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="form-group form-check">
+          <input
+          formControlName="accept"
+          [ngClass]="{ 'is-invalid':submit && a.confirmPassword.errors }"
+
+          
+           type="checkbox" id="acceptTerms" class="form-check-input" />
+          <label for="acceptTerms" class="form-check-label"
+            >Accept Terms & Conditions</label
+          >
+          <div class="text-warning">
+            Accept Ts & Cs is required
+          </div>
+        </div>
+        <div class="text-center">
+          <button class="btn btn-success btn-lg px-4 mr-3">Register</button>
+          <button (click)="OnReset()"
+          class="btn btn-warning" type="reset">
+            Reset
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
